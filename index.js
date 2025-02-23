@@ -1,3 +1,4 @@
+import express from 'express';
 import { Telegraf, Markup } from 'telegraf';
 import LocalSession from 'telegraf-session-local';
 import dotenv from 'dotenv';
@@ -78,3 +79,15 @@ bot.on('message', async (ctx) => {
 // Start the bot
 bot.launch();
 console.log('🤖 Bubble Bot is running...');
+
+// ✅ Dummy Express server to keep Render happy
+const app = express();
+const PORT = process.env.PORT || 3000;
+
+app.get('/', (req, res) => {
+    res.send('BubbleBuyBot is running!');
+});
+
+app.listen(PORT, () => {
+    console.log(`✅ Server is running on port ${PORT}`);
+});
